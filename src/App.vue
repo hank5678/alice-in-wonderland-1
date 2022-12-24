@@ -1,7 +1,49 @@
 <template>
-  <span>1 + 1 = 2</span>
+  
+  <span>{{num1}}+{{num2}}=</span>
+<input v-model="userAnswer" type="text">
+<button @click="checkanswer">送出</button>
 </template>
 
-<script setup></script>
 
-<style scoped></style>
+<!-- <script>
+export default {
+  data() {
+    return {
+      num1:Math.floor(Math.random()*9)+1,
+      num2:Math.floor(Math.random()*9)+1,
+      userAnswer:''
+    };
+  },
+  methods: {
+    checkanswer() {
+      if(this.num1+this.num2 == this.userAnswer) {
+        alert('正確');
+        this.userAnswer = ''
+      }
+    }
+  },
+};
+</script> -->
+
+<script setup>
+import {ref} from 'vue'
+ let num1=Math.floor(Math.random()*9)+1
+ let num2=Math.floor(Math.random()*9)+1
+ let answer= num1+num2;
+ let userAnswer = ref('');
+
+ function checkanswer(){
+  if(userAnswer.value==answer){
+    alert("正確")
+    userAnswer.value = ''
+  }
+  else{
+    alert("錯誤")
+  }
+
+ }
+</script>
+
+<style scoped>
+</style>
