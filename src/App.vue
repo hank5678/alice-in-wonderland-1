@@ -19,7 +19,9 @@ export default {
     checkanswer() {
       if(this.num1+this.num2 == this.userAnswer) {
         alert('正確');
-        this.userAnswer = ''
+        this.userAnswer = '';
+        this.num1=Math.floor(Math.random()*9)+1;
+        this.num2=Math.floor(Math.random()*9)+1;
       }
     }
   },
@@ -28,15 +30,20 @@ export default {
 
 <script setup>
 import {ref} from 'vue'
- let num1=Math.floor(Math.random()*9)+1
- let num2=Math.floor(Math.random()*9)+1
- let answer= num1+num2;
+
+ let num1=ref(Math.floor(Math.random()*9)+1)
+ let num2=ref(Math.floor(Math.random()*9)+1)
+ let answer=ref(0);
  let userAnswer = ref('');
 
  function checkanswer(){
-  if(userAnswer.value==answer){
+  answer.value=num1.value+num2.value
+  if(userAnswer.value==answer.value){
     alert("正確")
-    userAnswer.value = ''
+
+  num1.value=Math.floor(Math.random()*9)+1
+  num2.value=Math.floor(Math.random()*9)+1
+  userAnswer.value = ''
   }
   else{
     alert("錯誤")
